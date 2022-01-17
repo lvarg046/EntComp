@@ -26,7 +26,7 @@ public class NileStore extends JFrame {
             Item currentItem = new Item();
             currentItem.setItemID(Integer.parseInt(itemInfo[0]));
             currentItem.setItemDesc(itemInfo[1]);
-            currentItem.setInStock(Boolean.parseBoolean(itemInfo[2]));
+            currentItem.setInStock(itemInfo[2]);
             currentItem.setPrice(Double.parseDouble((itemInfo[3])));
 
             inventory.add(currentItem);
@@ -40,12 +40,12 @@ public class NileStore extends JFrame {
         this.inventory = inventory;
     }
 
-    public static void main( String[] args ) throws FileNotFoundException {
-        NileStore frame = new NileStore();
-        frame.pack();
-        frame.setTitle("Nile Dot Com - Spring 2022");
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }
+//    public static void main( String[] args ) throws FileNotFoundException {
+//        NileStore frame = new NileStore();
+//        frame.pack();
+//        frame.setTitle("Nile Dot Com - Spring 2022");
+//        frame.setLocationRelativeTo(null);
+//        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        frame.setVisible(true);
+//    }
 }

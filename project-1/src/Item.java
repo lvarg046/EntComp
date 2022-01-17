@@ -9,7 +9,7 @@ public class Item {
     private double price;
     private int itemID;
     private String itemDesc;
-    private boolean inStock;
+    private String inStock;
 
     // Setters and Getters for Inventory items
     public double getPrice(){
@@ -35,11 +35,10 @@ public class Item {
         this.itemDesc = itemDesc;
     }
 
-    public boolean getInStock(){
+    public String getInStock(){
         return inStock;
     }
 
-    public void setInStock( boolean inStock ){
-        this.inStock = inStock;
-    }
+    public void setInStock( String inStock ){ this.inStock = inStock; }
+
 }

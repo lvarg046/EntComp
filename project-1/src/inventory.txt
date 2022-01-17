@@ -28,7 +28,7 @@
 47831, "8x10 picture frame", true, 4.95
 19981, "Pledge furniture polish 13oz", true, 6.50
 228865, "3M Super 33+ electrical tape", true, 3.50
-228865X, "3M Super 33+ electrical tape box 10", true, 32.50
+2288652, "3M Super 33+ electrical tape box 10", true, 32.50
 4762, "HP copy paper ultra white - ream", true, 13.50
 29741, "Plush teddy bear 8 inch", true, 24.00
 339921, "Yamaha KT 100 kart engine", true, 950.00
