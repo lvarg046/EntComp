@@ -1,3 +1,5 @@
+//package NileDotCom;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -5,7 +7,7 @@ import java.io.*;
 import java.text.*;
 import java.util.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.sql.*;
 
 
 public class Storefront extends JFrame {
@@ -27,62 +29,98 @@ public class Storefront extends JFrame {
     private JButton newOrderButton;
     private JButton exitButton;
     private JButton processItemButton;
+    private int lineItem = 1;
+    private double orderSTotal = 0;
+    private double orderSize = 0;
+    private Order order = new Order();
+
 
     public Storefront() throws FileNotFoundException {
-        this.confirmItemButton.setEnabled(false);
-        this.viewOrderButton.setEnabled(false);
-        this.finishOrderButton.setEnabled(false);
-        this.getInventoryFromFile();
+        Storefront.this.processItemButton.setText("Process Item #"+ lineItem);
+        Storefront.this.confirmItemButton.setText("Confirm Item #"+ lineItem);
+        Storefront.this.confirmItemButton.setEnabled(false);
+        Storefront.this.viewOrderButton.setEnabled(false);
+        Storefront.this.finishOrderButton.setEnabled(false);
+        Storefront.this.getInventoryFromFile();
 
+
+        // Process Item
         processItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String inSTrue = new String("true");
                 int itemsOrdered = Integer.parseInt(itemQuantityText.getText());
                 int itemID = Integer.parseInt(itemIDText.getText());
-                int itemIndex = idSearch(itemID);
-                double itemDiscount = 0;
-                NumberFormat nf = NumberFormat.getInstance();
-                nf.setMaximumFractionDigits(2);
-
-                if( itemsOrdered > 0 && itemsOrdered <= 4){
-                    itemDiscount = 0.0;
-                } else if ( itemsOrdered >= 5 && itemsOrdered <= 9){
-                    itemDiscount = 0.10;
-                } else if ( itemsOrdered >= 10 && itemsOrdered <= 14){
-                    itemDiscount= 0.15;
-                } else if (itemsOrdered >= 15 ){
-                    itemDiscount = 0.20;
-                }
+                long itemIndex = idSearch(itemID); // making sure that itemID is the inventory.txt file
 
                 if(itemIndex != -1)
                 {
-                    Item foundItem = inventory.get(itemIndex);
-
-                    String string1 = foundItem.getInStock();
-
-//                    if( string1.compareTo(inSTrue) > 0){
-                        String itemInfo = foundItem.getItemID() + foundItem.getItemDesc() + " $"+ nf.format(foundItem.getPrice()) + " " + itemsOrdered + " " + (itemDiscount*100)+"% $"+ nf.format((foundItem.getPrice() - (foundItem.getPrice() * itemDiscount)));
-                        itemDetailsText.setText(itemInfo);
-                        Storefront.this.confirmItemButton.setEnabled(true);
-                        Storefront.this.processItemButton.setEnabled(false);
-                        JOptionPane.showMessageDialog(null, "Item #1 Accepted. Added to your cart.");
-//                    }
-
-
+                    Item foundItem = inventory.get((int) itemIndex); // Getting info from itemIndex after it's been found
+                    order.setItemInfo( foundItem.getItemID(), foundItem.getItemDesc(), String.format("%.2f",foundItem.getPrice())+"", itemsOrdered, (order.getDiscountPercent(itemsOrdered) * 100 ), String.format("%.2f", order.getFinalPrice(itemsOrdered, foundItem.getPrice()))+"");
+                    String itemInfo = foundItem.getItemID()+" "+ foundItem.getItemDesc() + " $" + foundItem.getPrice() + " " + itemsOrdered + " " + order.getDiscountPercent(itemsOrdered)*100 +"% $"+String.format("%.3f", order.getFinalPrice(itemsOrdered, foundItem.getPrice()));
+                    itemDetailsText.setText(itemInfo);
+                    Storefront.this.confirmItemButton.setEnabled(true);
+                    Storefront.this.processItemButton.setEnabled(false);
                 } else {
-                    JOptionPane.showMessageDialog( null, "Item ID "+ itemID + " not in file");
+                    JOptionPane.showMessageDialog(null, "Item ID " + itemID + " not in file.");
                 }
 
-                System.out.println("Item ID: "+ itemID);
-                System.out.println("Items Ordered: "+itemsOrdered);
-                System.out.println("itemInStock: "+ Storefront.this.inventory.get(itemIndex).getInStock());
+                // Debuggin'
+                String[] iInfo = new String[6];
+                iInfo = order.getItemInfo();
+                System.out.println("Item ID: " + itemID);
+                System.out.println("Items Ordered: " + itemsOrdered);
+                System.out.println("itemInStock: " + Storefront.this.inventory.get((int) itemIndex).getInStock() );
+                System.out.println("Price: "+Storefront.this.inventory.get((int) itemIndex).getPrice() );
+                System.out.println("Discount Price: "+ iInfo[5]);
             }
         });
 
+        // Confirm Item
         confirmItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int comp;
+                String inSTrue = "true";
+                int itemID = Integer.parseInt(itemIDText.getText());
+                int itemsOrdered = Integer.parseInt(itemQuantityText.getText());
+
+                long index = idSearch(itemID);
+                if( index != -1 ){
+                    Item foundItem = inventory.get( (int) index); // Getting info from itemIndex after it's been found
+                    // Used to determine stock status
+                    String string1 = foundItem.getInStock();
+                    comp = string1.compareTo(inSTrue);
+
+                    if( comp == 0 ){
+                        Storefront.this.itemDetailsText.getText();
+                        order.setQuantity(itemsOrdered);
+                        order.setSubTotal(order.getFinalPrice(order.getQuantity(), Double.parseDouble(order.itemInfo[2])));
+                        JOptionPane.showMessageDialog(null, "Item #" + lineItem + " accepted. Added to your cart.");
+
+                        lineItem++;
+                        Storefront.this.processItemButton.setText("Process Item #" + lineItem);
+                        Storefront.this.confirmItemButton.setText("Confirm Item #" + lineItem);
+                        Storefront.this.itemIDLabel.setText("Enter item ID for Item #" + lineItem + ":");
+                        Storefront.this.itemQuantityLabel.setText("Enter Quantity for Item #" + lineItem + ":");
+                        Storefront.this.itemDetailsLabel.setText("Details for Item #" + lineItem + ":");
+                        Storefront.this.orderSubtotalText.setText("$"+String.format("%.2f", order.getSubTotal()));
+                        Storefront.this.confirmItemButton.setEnabled(false);
+                        Storefront.this.processItemButton.setEnabled(true);
+                        Storefront.this.viewOrderButton.setEnabled(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Item ID "+ itemID +" is not in stock." );
+                        Storefront.this.processItemButton.setText("Process Item #" + lineItem);
+                        Storefront.this.confirmItemButton.setText("Confirm Item #" + lineItem);
+                        Storefront.this.itemIDLabel.setText("Enter item ID for Item #" + lineItem + ":");
+                        Storefront.this.itemQuantityLabel.setText("Enter Quantity for Item #" + lineItem + ":");
+                        Storefront.this.itemDetailsLabel.setText("Details for Item #" + lineItem + ":");
+                        Storefront.this.confirmItemButton.setEnabled(false);
+                        Storefront.this.processItemButton.setEnabled(true);
+                        Storefront.this.viewOrderButton.setEnabled(true);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Item ID " + itemID + " not in file.");
+                }
 
             }
         });
@@ -149,24 +187,45 @@ public class Storefront extends JFrame {
 
         while( textFile.hasNextLine()){
             String invItem = textFile.nextLine();
-            String[] itemInfo = invItem.split(",");
+            String[] itemInfo = invItem.split(", ");
 
             Item currentItem = new Item();
 //            Boolean.parseBoolean.toString()
             currentItem.setItemID(Integer.parseInt(itemInfo[0]));
             currentItem.setItemDesc(itemInfo[1]);
-            currentItem.setInStock(itemInfo[2]);
-            currentItem.setPrice(Double.parseDouble(itemInfo[3]));
-//            System.out.println( "ItemID: "+itemInfo[0]+" ItemDesc: "+ itemInfo[1]+" Item InStock: "+ itemInfo[2]+" ItemPrice: $"+ itemInfo[3]);
+            currentItem.setInStock(Boolean.parseBoolean(itemInfo[2]));
+            currentItem.setPrice(Double.parseDouble(String.format("%.2f", Double.parseDouble(itemInfo[3]))));
+//            System.out.println( "ItemID: "+itemInfo[0]+" ItemDesc: "+ itemInfo[1]+" Item InStock: "+itemInfo[2]);
             inventory.add(currentItem);
 //            System.out.println("End of while: "+ currentItem.getInStock());
         }
         textFile.close();
-
+        // For Debugging
 //        for (Item currentItem : inventory) {
-//            System.out.println("ItemID: " + currentItem.getItemID() + ", Item Desc: " + currentItem.getItemDesc() + ", Item Price: $" + currentItem.getPrice() + ", In stock: " + currentItem.getInStock());
+//            System.out.println("After File Close ItemID: " + currentItem.getItemID() + ", Item Desc: " + currentItem.getItemDesc() + ", Item Price: $" + currentItem.getPrice() + ", In stock: " + currentItem.getInStock());
 //        }
     }
+
+
+    public JTextField getOrderSubtotalText() {
+        return orderSubtotalText;
+    }
+
+    public void setOrderSubtotalText(JTextField orderSubtotalText) {
+        this.orderSubtotalText = orderSubtotalText;
+    }
+    
+    private void invoiceFile( Timestamp ts){
+        StringBuilder invoiceFile = new StringBuilder();
+        SimpleDateFormat transactionID = new SimpleDateFormat("ddMMyyyyHHmm");
+        SimpleDateFormat displayFormat = new SimpleDateFormat("M/dd/yyyy, h:mm:s aa z");
+        displayFormat.setTimeZone(TimeZone.getDefault());
+//        if( )
+        File transactionsFile = new File("transactions.txt");
+        String invTransactionID = transactionID.format(ts);
+
+    }
+
 
     public static void main(String[] args) throws FileNotFoundException{
         JFrame frame = new JFrame();
