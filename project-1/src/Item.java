@@ -3,7 +3,7 @@
     Assignment Title: Project 1 - Event-Driven Enterprise Simulation
     Due Date: Sunday, January 30, 2022
  */
-
+//package NileDotCom;
 
 public class Item {
     private double price;
@@ -15,6 +15,7 @@ public class Item {
     public double getPrice(){
         return price;
     }
+
     public void setPrice( double price ){
         this.price = price;
     }
@@ -39,6 +40,8 @@ public class Item {
         return inStock;
     }
 
-    public void setInStock( String inStock ){ this.inStock = inStock; }
+    public void setInStock( boolean inStock ){
+        this.inStock = String.valueOf(inStock);
+    }
 
 }
