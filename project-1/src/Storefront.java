@@ -1,3 +1,8 @@
+/*  Name: Luis Vargas
+    Course: CNT 4713 - Spring 2022
+    Assignment Title: Project 1 - Event-Driven Enterprise Simulation
+    Due Date: Sunday, January 30, 2022
+ */
 //package NileDotCom;
 
 import javax.swing.*;
@@ -15,9 +20,15 @@ import java.util.*;
 import java.awt.*;
 import java.sql.*;
 
-
 public class Storefront extends JFrame {
-    private final Path inventoryFile = Paths.get("src/inventory.txt"); // Path to Inventory File
+    private static final Order order = new Order();
+    private static final String process = "Process Item #";
+    private static final String confirm = "Confirm Item #";
+    private static final String IDText = "Enter Item ID for Item #";
+    private static final String iQuantity = "Enter Quantity for Item #";
+    private static final String iDetails = "Details for Item #";
+    private static final Path inventoryFile = Paths.get("src/inventory.txt"); // Path to Inventory File
+    private static final String transactionFilePath = "transactions.txt";
     private ArrayList<Item> inventory;
     private JPanel panel1;
     private JPanel panel2;
@@ -37,13 +48,12 @@ public class Storefront extends JFrame {
     private JButton processItemButton;
     private int lineItem = 1;
     private int totalItemsOrdered = 0;
-    private final Order order = new Order();
 
     public Storefront() throws FileNotFoundException {
 
         // Initialize GUI State
-        Storefront.this.processItemButton.setText("Process Item #" + lineItem);
-        Storefront.this.confirmItemButton.setText("Confirm Item #" + lineItem);
+        Storefront.this.processItemButton.setText(process + lineItem);
+        Storefront.this.confirmItemButton.setText(confirm + lineItem);
         Storefront.this.orderSubtotalText.setText("$0.00");
         Storefront.this.confirmItemButton.setEnabled(false);
         Storefront.this.viewOrderButton.setEnabled(false);
@@ -66,38 +76,36 @@ public class Storefront extends JFrame {
                     Item foundItem = inventory.get((int) itemIndex); // Getting info from itemIndex
                     String string1 = foundItem.getInStock(); // Used to determine stock status
                     comp = string1.compareTo(inSTrue);
-                    if (comp == 0) {
-                        // Item ID is in Stock
+                    if (comp == 0) {// Item ID is in Stock
                         String itemInfo = foundItem.getItemID() + " " + foundItem.getItemDesc() + " $" + foundItem.getPrice() + " " + itemsOrdered + " " + order.getDiscountPercent(itemsOrdered) * 100 + "% $" + String.format("%.3f", order.getFinalPrice(itemsOrdered, foundItem.getPrice()));
                         itemDetailsText.setText(itemInfo);
                         Storefront.this.confirmItemButton.setEnabled(true);
                         Storefront.this.processItemButton.setEnabled(false);
                         Storefront.this.itemIDText.setEditable(false);
-                    } else {
-                        // Item ID is NOT in stock
+                    } else {// Item ID is NOT in stock
+                        // Error Message generator
                         JOptionPane.showMessageDialog(panel1, "Item ID " + itemID + " is not in stock.", "NILE DOT COM - ERROR", JOptionPane.ERROR_MESSAGE);
                         // Update GUI
                         Storefront.this.itemDetailsText.setText("");
                         Storefront.this.itemIDText.setText("");
                         Storefront.this.itemQuantityText.setText("");
-                        Storefront.this.processItemButton.setText("Process Item #" + lineItem);
-                        Storefront.this.confirmItemButton.setText("Confirm Item #" + lineItem);
-                        Storefront.this.itemIDLabel.setText("Enter item ID for Item #" + lineItem + ":");
-                        Storefront.this.itemQuantityLabel.setText("Enter Quantity for Item #" + lineItem + ":");
-                        Storefront.this.itemDetailsLabel.setText("Details for Item #" + lineItem + ":");
+                        Storefront.this.processItemButton.setText(process + lineItem);
+                        Storefront.this.confirmItemButton.setText(confirm + lineItem);
+                        Storefront.this.itemIDLabel.setText(IDText + lineItem + ":");
+                        Storefront.this.itemQuantityLabel.setText(iQuantity + lineItem + ":");
+                        Storefront.this.itemDetailsLabel.setText(iDetails + lineItem + ":");
                         Storefront.this.confirmItemButton.setEnabled(false);
                         Storefront.this.processItemButton.setEnabled(true);
                         Storefront.this.viewOrderButton.setEnabled(true);
                     }
-                } else {
-                    // Item ID is NOT in inventory
+                } else {// Item ID is NOT in inventory
                     JOptionPane.showMessageDialog(null, "Item ID " + itemID + " not in file.", "NILE DOT COM - ERROR", JOptionPane.ERROR_MESSAGE);
                     Storefront.this.itemDetailsText.setText("");
-                    Storefront.this.processItemButton.setText("Process Item #" + lineItem);
-                    Storefront.this.confirmItemButton.setText("Confirm Item #" + lineItem);
-                    Storefront.this.itemIDLabel.setText("Enter item ID for Item #" + lineItem + ":");
-                    Storefront.this.itemQuantityLabel.setText("Enter Quantity for Item #" + lineItem + ":");
-                    Storefront.this.itemDetailsLabel.setText("Details for Item #" + lineItem + ":");
+                    Storefront.this.processItemButton.setText(process + lineItem);
+                    Storefront.this.confirmItemButton.setText(confirm + lineItem);
+                    Storefront.this.itemIDLabel.setText(IDText + lineItem + ":");
+                    Storefront.this.itemQuantityLabel.setText(iQuantity + lineItem + ":");
+                    Storefront.this.itemDetailsLabel.setText(iDetails + lineItem + ":");
                     Storefront.this.confirmItemButton.setEnabled(false);
                     Storefront.this.processItemButton.setEnabled(true);
                     Storefront.this.viewOrderButton.setEnabled(true);
@@ -144,11 +152,11 @@ public class Storefront extends JFrame {
                     Storefront.this.itemIDText.setText(""); // Clear for next input
                     Storefront.this.itemQuantityText.setText(""); // Clear for next input
                     Storefront.this.itemDetailsText.setText("");
-                    Storefront.this.processItemButton.setText("Process Item #" + lineItem);
-                    Storefront.this.confirmItemButton.setText("Confirm Item #" + lineItem);
-                    Storefront.this.itemIDLabel.setText("Enter item ID for Item #" + lineItem + ":");
-                    Storefront.this.itemQuantityLabel.setText("Enter Quantity for Item #" + lineItem + ":");
-                    Storefront.this.itemDetailsLabel.setText("Details for Item #" + lineItem + ":");
+                    Storefront.this.processItemButton.setText(process + lineItem);
+                    Storefront.this.confirmItemButton.setText(confirm + lineItem);
+                    Storefront.this.itemIDLabel.setText(IDText + lineItem + ":");
+                    Storefront.this.itemQuantityLabel.setText(iQuantity + lineItem + ":");
+                    Storefront.this.itemDetailsLabel.setText(iDetails + lineItem + ":");
                     Storefront.this.orderSubtotalText.setText("$" + String.format("%.2f", order.getSubTotal()));
                     Storefront.this.orderSubtotalLabel.setText("Order subtotal for " + order.getTotalItems() + " item(s):");
                     Storefront.this.confirmItemButton.setEnabled(false);
@@ -187,7 +195,7 @@ public class Storefront extends JFrame {
                     viewOrder.setLength(0);
                     viewOrder.append("Date: ").append(format.format(ts)).append("\n\n"); // using formatted date & time
                     viewOrder.append("Number of line items: ").append(local).append("\n\n"); // making all the line items
-                    viewOrder.append("Item# / ID / Title / Price / Qty / Disc % / Subtotal:").append("\n\n");
+                    viewOrder.append("Item # / ID / Title / Price / Qty / Disc % / Subtotal:").append("\n\n");
                     viewOrder.append(String.join("\n", order.getFinalList())).append("\n\n");
                     viewOrder.append("Order Subtotal: \t$").append(String.format("%.2f", order.getSubTotal())).append("\n\n");
                     viewOrder.append("Tax rate: \t").append(taxRate * 100).append("%").append("\n\n");
@@ -327,19 +335,18 @@ public class Storefront extends JFrame {
         textFile.close();
     }
 
-
     public void transactionFile(StringBuilder invoiceFile) { // Writes transaction to corresponding text file
-        File transactionFile = new File("transactions.txt");
+        File transactionFile = new File(transactionFilePath);
         if (transactionFile.exists() && !transactionFile.isDirectory()) {
             try {
-                Files.write(Paths.get("transactions.txt"), invoiceFile.toString().getBytes(), StandardOpenOption.APPEND);
+                Files.write(Paths.get(transactionFilePath), invoiceFile.toString().getBytes(), StandardOpenOption.APPEND);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
             PrintWriter writer;
             try {
-                writer = new PrintWriter("transactions.txt", StandardCharsets.UTF_8);
+                writer = new PrintWriter(transactionFilePath, StandardCharsets.UTF_8);
                 writer.print(invoiceFile);
                 writer.flush();
                 writer.close();
@@ -355,7 +362,7 @@ public class Storefront extends JFrame {
         frame.setContentPane(new Storefront().panel1);
         frame.pack();
         frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
     }
 
