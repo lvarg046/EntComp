@@ -1,0 +1,12 @@
+250120220150, 14, "Stanley #2 Philips Screwdriver", 6.95, 2, 0.0, $6.95, 1/25/2022, 1:50:45 AM EST
+250120220150, 23, "Tamiya 2oz paint - ferrari red", 2.39, 2, 0.0, $2.39, 1/25/2022, 1:50:45 AM EST
+250120220155, 14, "Stanley #2 Philips Screwdriver", 6.95, 2, 0.0, $6.95, 1/25/2022, 1:55:26 AM EST
+250120220155, 23, "Tamiya 2oz paint - ferrari red", 2.39, 23, 20.0, $1.91, 1/25/2022, 1:55:26 AM EST
+250120220155, 1111, "Top Secret Twenty One - Janet Evanovich", 8.99, 1, 0.0, $8.99, 1/25/2022, 1:55:26 AM EST
+250120220158, 23, "Tamiya 2oz paint - ferrari red", 2.39, 2, 0.0, $2.39, 1/25/2022, 1:58:20 AM EST
+300120222310, 8543, "Ritchey 1 inch threaded headset - silver", 45.00, 12, 15.0, $38.25, 1/30/2022, 11:10:38 PM EST
+300120222314, 8543, "Ritchey 1 inch threaded headset - silver", 45.00, 12, 15.0, $38.25, 1/30/2022, 11:14:46 PM EST
+300120222321, 1111, "Top Secret Twenty One - Janet Evanovich", 8.99, 12, 15.0, $7.64, 1/30/2022, 11:21:29 PM EST
+300120222321, 8543, "Ritchey 1 inch threaded headset - silver", 45.00, 12, 15.0, $38.25, 1/30/2022, 11:21:29 PM EST
+300120222321, 14, "Stanley #2 Philips Screwdriver", 6.95, 2, 0.0, $6.95, 1/30/2022, 11:21:29 PM EST
+300120222321, 387, "Brachs butterscotch hard candy - 1 lb", 4.50, 15, 20.0, $3.60, 1/30/2022, 11:21:29 PM EST

@@ -1,0 +1,20 @@
+
+]	java:S125"<This block of commented-out lines of code should be removed.(‚ýµ¯øÿÿÿÿ8Öý¶¾è/
+M
+java:S1948"+Make "inventory" transient or serializable.(ÆíŸ‹üÿÿÿÿ8…òÃ¾è/
+X	java:S125-"<This block of commented-out lines of code should be removed.(Ç•‹Ë8ø‚ûÖå/
+C
+java:S1128
+"&Remove this unused import 'java.text'.(ë¼Èí8”òÃ¾è/
+B
+java:S1128"%Remove this unused import 'java.awt'.(ï´µ©8”òÃ¾è/
+M
+java:S1128"+Remove this unused import 'java.awt.event'.(Ã®ÎÙÿÿÿÿÿ8”òÃ¾è/
+t
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ù­éÇÿÿÿÿÿ
+†
+java:S1319&"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¦ã½’
+
+java:S1319)"iThe type of "inventory" should be an interface such as "List" rather than the implementation "ArrayList".(•­À¨
+7
+java:S1220""Move this file to a named package.8ãý¶¾è/

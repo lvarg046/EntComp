@@ -1,0 +1,47 @@
+
+k
+java:S1450"URemove the "panel2" field and declare it as a local variable in the relevant methods.(›ÏÑ´
+L
+java:S1948"/Make "inventoryFile" transient or serializable.(ÕÝ¬Þ8¦¤óòê/
+F
+java:S1948"+Make "inventory" transient or serializable.(ÆíŸ‹üÿÿÿÿ
+C
+java:S1948("'Make "order" transient or serializable.(¦®ª%8§¤óòê/
+m
+java:S3776*"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(×ëÏ–ùÿÿÿÿ
+=
+java:S1481è"&Remove this unused "s" local variable.(ÐÊŸã
+j
+java:S3252æ"LUse static access with "javax.swing.WindowConstants" for "DISPOSE_ON_CLOSE".(×Ð‘÷8À¥óòê/
+u
+java:S1171ê"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ
+i	java:S100ø"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–­Œßúÿÿÿÿ
+i	java:S100¢"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ ¨úúÿÿÿÿ
+u
+java:S2293¸"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ù­éÇÿÿÿÿÿ
+l
+java:S1192."ODefine a constant instead of duplicating this literal "Confirm Item #" 5 times.(ÉàÝÔ8Ù¥óòê/
+t
+java:S1192Ì"QDefine a constant instead of duplicating this literal "transactions.txt" 3 times.(”ûøßýÿÿÿÿ8Ù¥óòê/
+w
+java:S1192V"ZDefine a constant instead of duplicating this literal "Enter Quantity for Item #" 3 times.(•»°á8Ú¥óòê/
+l
+java:S1192-"ODefine a constant instead of duplicating this literal "Process Item #" 5 times.(üœ…Ó8Ú¥óòê/
+v
+java:S1192U"YDefine a constant instead of duplicating this literal "Enter item ID for Item #" 3 times.(é¹ª¾8Ú¥óòê/
+u
+java:S1192W"SDefine a constant instead of duplicating this literal "Details for Item #" 3 times.(Ñ‚îÿÿÿÿÿ8Û¥óòê/
+>
+java:S16047"(Make this anonymous inner class a lambda(Ãûõ¥
+>
+java:S1604m"(Make this anonymous inner class a lambda(²ˆ€™
+?
+java:S1604£"(Make this anonymous inner class a lambda(±¨ïâ
+D
+java:S1604Ü"(Make this anonymous inner class a lambda(ºÐ„Åøÿÿÿÿ
+?
+java:S1604•"(Make this anonymous inner class a lambda(ÞÔ¤×
+?
+java:S1604¥"(Make this anonymous inner class a lambda(–ÇÕÕ
+0
+java:S1220""Move this file to a named package.
