@@ -16,7 +16,7 @@ public class PackageManagementFacilitySimulator {
         try{
             System.out.println("\n * * * * * * * * * * PACKAGE MANAGEMENT FACILITY SIMULATION BEGINS * * * * * * * * * * \n");
             // Read in config.txt file
-            Scanner file = new Scanner( new File("config.txt"));
+            Scanner file = new Scanner( new File("src/config.txt"));
 
             // array list to store the integers from config.txt
             ArrayList<Integer> config = new ArrayList<>();
@@ -35,17 +35,18 @@ public class PackageManagementFacilitySimulator {
             int numberOfRoutingStations = config.get(0);
 
             // Assign the workloads to each station from the values in the config.txt file
-            for ( int i = 0; j < numberOfRoutingStations; j++ ){
+            for ( int j = 0; j < numberOfRoutingStations; j++ ){
                 System.out.println("Routing Station " + j + " Has a total workload of "+ config.get(j+1) );
             }
             System.out.println();
             System.out.println();
 
             // Create an array of conveyor objects
-
+            Conveyor[] conveyors = new Conveyor[numberOfRoutingStations];
             // fill the array with the conveyors for this simulation run
             for ( int i = 0; i <numberOfRoutingStations; i++ ){
-                // creaete the conveyor objects here
+                // create the conveyor objects here
+                conveyors[i] = new Conveyor(i);
             }
 
             // creates the routing stations for this simulation run
@@ -53,6 +54,7 @@ public class PackageManagementFacilitySimulator {
                 try{
                     // start threads executing using the ExecutorService objects
                     // Routing Station constructor parameter order: station number. station-workload, input conveyor assignment, output conveyor assignment
+                    application.execute(new RoutingStation(i, config.get(i+1), conveyors[i], conveyors[(i + numberOfRoutingStations - 1) % numberOfRoutingStations]));
                 } catch ( Exception e){
                     e.printStackTrace();
                 }

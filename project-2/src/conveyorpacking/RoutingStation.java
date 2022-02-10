@@ -7,7 +7,7 @@ package conveyorpacking;
 
 import java.util.*;
 
-public class RoutingStation {
+public class RoutingStation implements Runnable{
     protected Random gen = new Random();
     protected int stationNum;
     protected int workload;
@@ -23,6 +23,10 @@ public class RoutingStation {
         this.inconveyor = inconveyor;
         this.outconveyor = outconveyor;
         workLoadCounter = workload;
+        System.out.println("Routing Station "+stationNum+": Input conveyor set to conveyor number C"+inconveyor.conveyorNum);
+        System.out.println("Routing Station "+stationNum+": Output conveyor set to conveyor number C"+outconveyor.conveyorNum);
+        System.out.println("Routing Station "+stationNum+": Workload set. Station "+stationNum+" has a total of "+workload+" packages to move");
+
         // this.goToSleep();
     }
 
@@ -36,5 +40,62 @@ public class RoutingStation {
         } catch (InterruptedException e){
             e.printStackTrace();
         }
+    }// end go to sleep
+
+    public void doWork(){
+        System.out.println("\n ****** Routing Station "+ stationNum + ": * * * * CURRENTLY HARD AT WORK MOVING PACKAGES * * * * * * \n");
+        System.out.println("Routing Station "+ stationNum +": successfully moves packages into station on input conveyor C" + inconveyor.conveyorNum + ".\n");
+        System.out.println("Routing Station "+ stationNum +": successfully moves packages out of station on output conveyor C"+ outconveyor.conveyorNum+".\n\n");
+        workLoadCounter--;
+        System.out.println("Routing Station "+ stationNum+": has "+workLoadCounter+" package groups left to move. \n\n");
+        goToSleep();
+
+        if(workLoadCounter == 0){
+            System.out.println("\n # # # # # Routing Station "+stationNum+": WORKLOAD SUCCESSFULLY COMPLETED. * * * Routing Station "+stationNum+" preparing to go offline. # # # # \n");
+        }
+    }
+
+    public void run() {
+        // dump out the conveyor assignments and workload settings for the station - simulation output criteria.
+        // example System.out.println("\n %%%% ROUTING STATION "+ stationNum +": ENTERING LOCK ACQUISITION PHASE\n);
+
+        // Run the simulation on the station for its entire workload.
+        for( int i=0; i < workload; i++ ){
+            System.out.println("Routing Station " + stationNum + ": holds lock on input conveyor C" + inconveyor.conveyorNum + ".");
+            bothLocks = false;
+            while( !bothLocks ){
+                // Get input conveyor
+                if( inconveyor.getLock() ){ // Input conveyor lock is available
+                    System.out.println("Routing Station "+ stationNum +": holds lock on input conveyor C"+ inconveyor.conveyorNum+".");
+                    // Get output conveyor
+                    if( outconveyor.getLock() ){ // Output conveyor lock is available
+                        System.out.println("Routing Station " + stationNum + ": holds lock on output conveyor C"+outconveyor.conveyorNum+".");
+                        bothLocks = true;
+                        inconveyor.setLock();
+                        outconveyor.setLock();
+                        System.out.println("\n * * * * * * Routing Station "+ stationNum +": holds locks on both input conveyor C"+inconveyor.conveyorNum+" and on output conveyor C"+outconveyor.conveyorNum+". * * * * *  \n");
+
+                        //start work flow - packages moving
+                        doWork();
+                        inconveyor.unlockConveyor();
+                        System.out.println("Routing Station "+ stationNum+": Unlocks/releases input conveyor C"+inconveyor.conveyorNum);
+                        outconveyor.unlockConveyor();
+                        System.out.println("Routing Station "+ stationNum+": Unlocks/releases input conveyor C"+outconveyor.conveyorNum);
+                    } else {
+                        // unlock the input conveyor if the output conveyor is busy( i.e. locked by another routing station).
+                        // wait a bit before trying again.
+                        this.inconveyor.unlockConveyor();
+                        System.out.println("Routing Station "+ stationNum+": Unable to lock output conveyor C"+outconveyor.conveyorNum+", unlocks input conveyor C"+inconveyor.conveyorNum);
+                        goToSleep();
+                    }
+                } else {
+
+                    goToSleep();
+                }
+
+            }
+        }
+        inconveyor.unlockConveyor();
+        outconveyor.unlockConveyor();
     }
 }

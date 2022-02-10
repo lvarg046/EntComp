@@ -6,21 +6,27 @@
 package conveyorpacking;
 
 import java.util.*;
+import java.util.concurrent.locks.*;
 
 public class Conveyor {
     int conveyorNum;
-    private Lock theLock == new ReentrantLock();
+    private Lock theLock = new ReentrantLock();
     public Conveyor( int conveyorNum ){ // Assigns conveyor it's number
         this.conveyorNum = conveyorNum;
     }
-    public boolean lockConveyor(){
-        // theLock.lock();
-        // use tryLock();
-        // tryLock() returns true if the lock request is granted by the Lock Manager
-        // i.e. the lock was free and was granted to the requesting thread - otherwise return is false.
-        return false;
+
+    public boolean getLock(){
+        return theLock.tryLock();
+    }
+    public void setLock(){
+        theLock.lock();
     }
     public void unlockConveyor(){
         // Simply call unlock() on theLock
+        try{
+            theLock.unlock();
+        } catch ( Exception e){
+            System.out.print("");
+        }
     }
 }
