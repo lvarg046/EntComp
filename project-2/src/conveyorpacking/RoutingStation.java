@@ -52,6 +52,10 @@ public class RoutingStation implements Runnable{
 
         if(workLoadCounter == 0){
             System.out.println("\n # # # # # Routing Station "+stationNum+": WORKLOAD SUCCESSFULLY COMPLETED. * * * Routing Station "+stationNum+" preparing to go offline. # # # # \n");
+            bothLocks = true;
+            inconveyor.unlockConveyor();
+            outconveyor.unlockConveyor();
+            goToSleep();
         }
     }
 
@@ -80,16 +84,19 @@ public class RoutingStation implements Runnable{
                         inconveyor.unlockConveyor();
                         System.out.println("Routing Station "+ stationNum+": Unlocks/releases input conveyor C"+inconveyor.conveyorNum);
                         outconveyor.unlockConveyor();
-                        System.out.println("Routing Station "+ stationNum+": Unlocks/releases input conveyor C"+outconveyor.conveyorNum);
+                        System.out.println("Routing Station "+ stationNum+": Unlocks/releases output conveyor C"+outconveyor.conveyorNum);
                     } else {
                         // unlock the input conveyor if the output conveyor is busy( i.e. locked by another routing station).
                         // wait a bit before trying again.
                         this.inconveyor.unlockConveyor();
                         System.out.println("Routing Station "+ stationNum+": Unable to lock output conveyor C"+outconveyor.conveyorNum+", unlocks input conveyor C"+inconveyor.conveyorNum);
+//                        this.outconveyor.unlockConveyor();
+                        bothLocks = true;
                         goToSleep();
                     }
                 } else {
-
+                    this.inconveyor.unlockConveyor();
+                    this.outconveyor.unlockConveyor();
                     goToSleep();
                 }
 

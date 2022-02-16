@@ -1,0 +1,149 @@
+
+ * * * * * * * * * * PACKAGE MANAGEMENT FACILITY SIMULATION BEGINS * * * * * * * * * * 
+
+Routing Station 0 Has a total workload of 2
+Routing Station 1 Has a total workload of 3
+Routing Station 2 Has a total workload of 4
+
+
+Routing Station 0: Input conveyor set to conveyor number C0
+Routing Station 0: Output conveyor set to conveyor number C2
+Routing Station 0: Workload set. Station 0 has a total of 2 packages to move
+Routing Station 1: Input conveyor set to conveyor number C1
+Routing Station 1: Output conveyor set to conveyor number C0
+Routing Station 1: Workload set. Station 1 has a total of 3 packages to move
+Routing Station 2: Input conveyor set to conveyor number C2
+Routing Station 2: Output conveyor set to conveyor number C1
+Routing Station 2: Workload set. Station 2 has a total of 4 packages to move
+Routing Station 1: holds lock on input conveyor C1.
+Routing Station 0: holds lock on input conveyor C0.
+Routing Station 0: holds lock on input conveyor C0.
+Routing Station 1: holds lock on input conveyor C1.
+Routing Station 0: holds lock on output conveyor C2.
+
+ * * * * * * Routing Station 0: holds locks on both input conveyor C0 and on output conveyor C2. * * * * *  
+
+Routing Station 1: Unable to lock output conveyor C0, unlocks input conveyor C1
+Routing Station 2: holds lock on input conveyor C2.
+
+ ****** Routing Station 0: * * * * CURRENTLY HARD AT WORK MOVING PACKAGES * * * * * * 
+
+Routing Station 0: successfully moves packages into station on input conveyor C0.
+
+Routing Station 0: successfully moves packages out of station on output conveyor C2.
+
+
+Routing Station 0: has 1 package groups left to move. 
+
+
+Routing Station 0: Unlocks/releases input conveyor C0
+Routing Station 0: Unlocks/releases output conveyor C2
+Routing Station 0: holds lock on input conveyor C0.
+Routing Station 0: holds lock on input conveyor C0.
+Routing Station 0: holds lock on output conveyor C2.
+
+ * * * * * * Routing Station 0: holds locks on both input conveyor C0 and on output conveyor C2. * * * * *  
+
+
+ ****** Routing Station 0: * * * * CURRENTLY HARD AT WORK MOVING PACKAGES * * * * * * 
+
+Routing Station 0: successfully moves packages into station on input conveyor C0.
+
+Routing Station 0: successfully moves packages out of station on output conveyor C2.
+
+
+Routing Station 0: has 0 package groups left to move. 
+
+
+Routing Station 1: holds lock on input conveyor C1.
+Routing Station 1: holds lock on input conveyor C1.
+Routing Station 1: Unable to lock output conveyor C0, unlocks input conveyor C1
+
+ # # # # # Routing Station 0: WORKLOAD SUCCESSFULLY COMPLETED. * * * Routing Station 0 preparing to go offline. # # # # 
+
+Routing Station 1: holds lock on input conveyor C1.
+Routing Station 1: holds lock on input conveyor C1.
+Routing Station 1: Unable to lock output conveyor C0, unlocks input conveyor C1
+Routing Station 0: Unlocks/releases input conveyor C0
+Routing Station 0: Unlocks/releases output conveyor C2
+Routing Station 2: holds lock on input conveyor C2.
+Routing Station 2: holds lock on output conveyor C1.
+
+ * * * * * * Routing Station 2: holds locks on both input conveyor C2 and on output conveyor C1. * * * * *  
+
+
+ ****** Routing Station 2: * * * * CURRENTLY HARD AT WORK MOVING PACKAGES * * * * * * 
+
+Routing Station 2: successfully moves packages into station on input conveyor C2.
+
+Routing Station 2: successfully moves packages out of station on output conveyor C1.
+
+
+Routing Station 2: has 3 package groups left to move. 
+
+
+Routing Station 2: Unlocks/releases input conveyor C2
+Routing Station 2: Unlocks/releases output conveyor C1
+Routing Station 2: holds lock on input conveyor C2.
+Routing Station 2: holds lock on input conveyor C2.
+Routing Station 2: holds lock on output conveyor C1.
+
+ * * * * * * Routing Station 2: holds locks on both input conveyor C2 and on output conveyor C1. * * * * *  
+
+
+ ****** Routing Station 2: * * * * CURRENTLY HARD AT WORK MOVING PACKAGES * * * * * * 
+
+Routing Station 2: successfully moves packages into station on input conveyor C2.
+
+Routing Station 2: successfully moves packages out of station on output conveyor C1.
+
+
+Routing Station 2: has 2 package groups left to move. 
+
+
+Routing Station 2: Unlocks/releases input conveyor C2
+Routing Station 2: Unlocks/releases output conveyor C1
+Routing Station 2: holds lock on input conveyor C2.
+Routing Station 2: holds lock on input conveyor C2.
+Routing Station 2: holds lock on output conveyor C1.
+
+ * * * * * * Routing Station 2: holds locks on both input conveyor C2 and on output conveyor C1. * * * * *  
+
+
+ ****** Routing Station 2: * * * * CURRENTLY HARD AT WORK MOVING PACKAGES * * * * * * 
+
+Routing Station 2: successfully moves packages into station on input conveyor C2.
+
+Routing Station 2: successfully moves packages out of station on output conveyor C1.
+
+
+Routing Station 2: has 1 package groups left to move. 
+
+
+Routing Station 2: Unlocks/releases input conveyor C2
+Routing Station 2: Unlocks/releases output conveyor C1
+Routing Station 2: holds lock on input conveyor C2.
+Routing Station 2: holds lock on input conveyor C2.
+Routing Station 2: holds lock on output conveyor C1.
+
+ * * * * * * Routing Station 2: holds locks on both input conveyor C2 and on output conveyor C1. * * * * *  
+
+
+ ****** Routing Station 2: * * * * CURRENTLY HARD AT WORK MOVING PACKAGES * * * * * * 
+
+Routing Station 2: successfully moves packages into station on input conveyor C2.
+
+Routing Station 2: successfully moves packages out of station on output conveyor C1.
+
+
+Routing Station 2: has 0 package groups left to move. 
+
+
+
+ # # # # # Routing Station 2: WORKLOAD SUCCESSFULLY COMPLETED. * * * Routing Station 2 preparing to go offline. # # # # 
+
+Routing Station 2: Unlocks/releases input conveyor C2
+Routing Station 2: Unlocks/releases output conveyor C1
+
+ * * * * * * * * * * ALL WORKLOADS COMPLETE * * * PACKAGE MANAGEMENT FACILITY SIMULATION ENDS * * * * * * * * * * 
+
