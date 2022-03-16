@@ -210,6 +210,7 @@ public class GUIController extends JPanel {
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
 //        this.setContentPane(this.contentPanel);
+        //
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
