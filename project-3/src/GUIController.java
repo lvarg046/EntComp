@@ -47,47 +47,94 @@ public class GUIController extends JFrame {
         sqlExecutionClearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if( !dbConnected )
+                    throw new IllegalStateException("Not Connected to Database");
 
+                sqlResults.setModel(new DefaultTableModel());
+//                DefaultTableModel dm = (DefaultTableModel) sqlResults.getModel();
+//
+//                for( int i = dm.getRowCount() - 1; i>= 0; i--){
+//                    dm.removeRow(i);
+//
+//                }
             }
         });
 
-        // TODO: execute SQL command from sqlCommandWindow
-        // TODO: Parse SQL Command to execute using JDBC connection and resultSet
+        // TODO: execute SQL command from sqlCommandWindow -> Done
+        // TODO: Parse SQL Command to execute using JDBC connection and resultSet -> Done
+        // TODO: Display results onto JTable => Done
+        // TODO: INSERT, DELETE, UPDATE => Done
         sqlExecuteCommandButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if( !dbConnected){
+                    throw new IllegalStateException("Not Connected to the Database");
+                }
                 try {
+                    sqlResults.setModel(new DefaultTableModel());
                     statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                    resultSet = statement.executeQuery(sqlCommandWindow.getText());
-                    metaData = resultSet.getMetaData();
-                    DefaultTableModel model = new DefaultTableModel();
+//                    statement.executeUpdate(sqlCommandWindow.getText());
+                    String query = sqlCommandWindow.getText();
+                    String q2 = query.toLowerCase();
+                    if( q2.contains("insert") || q2.contains("delete") || q2.contains("update")){
+                        statement.execute(query);
 
+                    } else {
+                        resultSet = statement.executeQuery( query );
+                        RSmetaData = resultSet.getMetaData();
 
-                    int numberOfCols =  metaData.getColumnCount();
-                    String colName;
-                    sqlResults.setModel(model);
-                    sqlResults.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-
-                    for( int i = 1; i <= numberOfCols; i++){
-//                        System.out.printf("%-20s\t", metaData.getColumnName(i));
-                        sqlResults.addColumn((JTable)metaData.getColumnName(i) );
-                    }
-                    System.out.println();
-                    for( int i = 1; i<= numberOfCols; i++){
-                        System.out.printf("%-20s\t", "-------------");
-                    }
-                    System.out.println();
-
-//                    System.out.println("WE HERE");
-                    while(resultSet.next()){
-                        for( int i = 1; i <= numberOfCols; i++){
-                            System.out.printf("%-20s\t", resultSet.getObject(i));
+                        DefaultTableModel model = (DefaultTableModel) sqlResults.getModel();
+                        colCount = RSmetaData.getColumnCount();
+                        colName = new String[colCount];
+                        for( int i = 0; i < colCount; i++){
+                            colName[i] = RSmetaData.getColumnName(i+1);
                         }
-                        System.out.println();
+                        sqlResults.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+                        model.setColumnIdentifiers(colName);
+                        String[] row = new String[colCount+1];
+                        while( resultSet.next() ){
+                            for( int i = 1; i <= colCount; i++){
+                                row[i-1] = resultSet.getString(i);
+                            }
+                            model.addRow( row );
+                        }
                     }
-                    System.out.println();System.out.println();
                     statement.close();
+
+
+//
+//                    statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+//                    resultSet = statement.executeQuery(sqlCommandWindow.getText());
+//                    metaData = resultSet.getMetaData();
+//                    DefaultTableModel model = new DefaultTableModel();
+//
+//
+//                    int numberOfCols =  metaData.getColumnCount();
+//                    String colName;
+//                    sqlResults.setModel(model);
+//                    sqlResults.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+//
+//                    for( int i = 1; i <= numberOfCols; i++){
+//                        System.out.printf("%-20s\t", metaData.getColumnName(i));
+////                        sqlResults.addColumn((JTable)metaData.getColumnName(i) );
+//                    }
+//                    System.out.println();
+//                    for( int i = 1; i<= numberOfCols; i++){
+//                        System.out.printf("%-20s\t", "-------------");
+//                    }
+//                    System.out.println();
+//
+////                    System.out.println("WE HERE");
+//                    while(resultSet.next()){
+//                        for( int i = 1; i <= numberOfCols; i++){
+//                            System.out.printf("%-20s\t", resultSet.getObject(i));
+//                        }
+//                        System.out.println();
+//                    }
+//                    System.out.println();System.out.println();
+//                    statement.close();
                 } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
                     ex.printStackTrace();
                 }
 
@@ -102,7 +149,8 @@ public class GUIController extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Properties properties = new Properties();
                 FileInputStream filein;
-
+                if ( dbConnected )
+                    JOptionPane.showMessageDialog(contentPanel, "Already connected to the database", "SQL Client - DATABASE CONNECTION ERROR", JOptionPane.ERROR_MESSAGE);
                 try{
                     filein = new FileInputStream( "src/" + propertiesFileComboBox.getSelectedItem() );
                     properties.load(filein);
@@ -120,16 +168,19 @@ public class GUIController extends JFrame {
                             dbConnected = true;
                         } catch (SQLException ex) {
                             ex.printStackTrace();
+                            dbConnected = false;
                         }
                         if( dbConnected ){
                             try {
                                 assert dbMetaData != null;
                                 System.out.println("Database connected");
-                                dbConnectionStatusText.setText("Connected to: "+dbMetaData.getURL()+" as USER: "+dbMetaData.getUserName());
+                                dbConnectionStatusText.setText(dbMetaData.getUserName()+" Connected to the "+ connection.getCatalog()+" database");
                                 dbConnectionStatusText.setBackground(Color.green);
                                 dbConnectionStatusText.setForeground(Color.black);
                                 dbConnectionStatusText.setFont(dbConnectionStatusText.getFont().deriveFont(dbConnectionStatusText.getFont().getStyle() | Font.BOLD));
                                 dbDisconnectButton.setEnabled(true);
+
+                                /* This below is for console logging/troubleshooting */
                                 System.out.println("JDBC Driver Name: " + dbMetaData.getURL()); // Returns URL for DB connected to from properties file
                                 System.out.println("JDBC Driver version: " + dbMetaData.getDriverVersion());
                                 System.out.println("USER: "+dbMetaData.getUserName());
@@ -143,7 +194,7 @@ public class GUIController extends JFrame {
                             }
 
                         } else {
-                            dbConnectionStatusText.setText("Unable to establish a connection to the database");
+                            dbConnectionStatusText.setText("Unable to establish a connection to the database " + connection.getCatalog() );
                             dbConnectionStatusText.setBackground(Color.black);
                             dbConnectionStatusText.setForeground(Color.red);
                             dbConnectionStatusText.setFont(dbConnectionStatusText.getFont().deriveFont(dbConnectionStatusText.getFont().getStyle() | Font.BOLD));
@@ -153,7 +204,7 @@ public class GUIController extends JFrame {
                         JOptionPane.showMessageDialog(contentPanel, "Invalid Username/Password for this properties file", "SQL Client - ERROR", JOptionPane.ERROR_MESSAGE);
                     }
 
-                } catch(IOException ioe ){
+                } catch(IOException | SQLException ioe){
                     ioe.printStackTrace();
                     dbConnected = false;
                 }
@@ -166,18 +217,16 @@ public class GUIController extends JFrame {
         dbDisconnectButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                if( dbConnected ){
                     try {
                         dataSource.getConnection();
                         dbMetaData = connection.getMetaData();
                         dbConnected = false;
-                        dbConnectionStatusText.setText("SUCCESSFULLY DISCONNECTED FROM DATABASE "+ dbMetaData.getURL());
+                        dbConnectionStatusText.setText( dbMetaData.getUserName()+ ": Successfully disconnected from the "+connection.getCatalog()+" database");
                         connection.close();
                         dbDisconnectButton.setEnabled(false);
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }
-                }
             }
         });
     }
@@ -484,8 +533,12 @@ public class GUIController extends JFrame {
         private MysqlDataSource dataSource;
         private Statement statement;
         private ResultSet resultSet;
+        private ResultSetMetaData RSmetaData;
         private ResultSetMetaData metaData;
         private int numberOfRows;
+        private int colCount;
+        private String[] colName;
+        private String coName;
 
     public static void main (String[] args ) throws SQLException, IOException, ClassNotFoundException {
 
