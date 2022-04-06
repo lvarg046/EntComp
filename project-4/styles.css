@@ -2,6 +2,10 @@ body{
     background-color: black;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 .results{
     text-align: center;
     font-size: 10px;

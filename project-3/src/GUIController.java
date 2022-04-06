@@ -73,6 +73,7 @@ public class GUIController extends JFrame {
     private int num_updates;
     private MysqlDataSource ops_log_ds;
     private Connection ops_log_conn;
+
     public GUIController() {
         initComponents();
         initializeDB();
