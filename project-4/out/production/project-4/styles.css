@@ -14,12 +14,7 @@ body{
     border-top:3px solid lawngreen;
     color: white;
 }
-.middle-text{
-    text-align: center;
-}
-
 .user-color{
-    text-align: center;
     color:red;
     font-weight:bold;
 }
