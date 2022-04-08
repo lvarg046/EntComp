@@ -34,8 +34,6 @@ public class ThreeTier{
     private Connection ops_log_conn;
 
     // Root or client
-
-
     private void initRootDB(){
         try {
             ds = new MysqlDataSource();
