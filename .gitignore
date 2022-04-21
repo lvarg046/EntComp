@@ -11,6 +11,7 @@ project-4/*.icloud
 project-3/root/
 /ENT_Lecture_stuff/
 /ENT_Lecture_stuff/*
+/project-3/project-3.iml
 *.iml
 *.zip
 *.7z
