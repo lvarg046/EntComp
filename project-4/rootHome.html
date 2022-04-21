@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <title>Project 4</title>
 </head>
 <body>
@@ -17,25 +17,24 @@
         Please enter any valid SQL query or update command in the box below.</span>s
     </h1>
 </div>
-
+<!--as-->
 <div class="text-box">
     <form>
-        <textarea class="form-control" id="text-area" rows ="20" cols="80" name = "name" autofocus method="post"></textarea><br/>
-        <input name="execute" class="execute-button" type = "submit" value = "Execute Command" formaction="/Project4/webapp">
-        <input name="reset" class="reset-button" type = "submit" value = "Reset Form" formaction="Project4/WebApplication.html">
-        <input name="clear" class="clear-button" type = "submit" value = "Clear Results">
+        <textarea class="form-control" id="text-area" rows ="20" cols="80" name = "textsql" autofocus method="post"></textarea><br/>
+        <input name="execute" class="execute-button" type = "submit" value = "Execute Command" formaction="/Project4/webapp" method = "post">
+        <input name="reset" class="reset-button" type = "submit" value = "Reset Form" formaction="/Project4/webapp">
+        <input name="clear" class="clear-button" type = "submit" value = "Clear Results" formaction="rootHome.html">
     </form>
 </div><br/>
 <div class="results">
     <h1>All execution results will appear below this line</h1>
     <div class="dbresults">
         <h1>Database Results:</h1>
-        <form>
-            <table>
-
+        <form >
+            <table class="dbRes">
             </table>
         </form>
-    </div>
+    </div></br></br>
 </div>
 <div class="dbresults">
 

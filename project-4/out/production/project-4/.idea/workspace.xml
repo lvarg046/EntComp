@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2c8dc536-a0c6-4fcb-98b7-aec724542bd6" name="Changes" comment="Updating stuff">
+      <change beforePath="$PROJECT_DIR$/clientHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/clientHome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loginPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/loginPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-4/WebApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-4/WebApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-4/clientHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-4/clientHome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-4/rootHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-4/rootHome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-4/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-4/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rootHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/rootHome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ThreeTier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="module-info" />
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="27Mb4P6EnI3Da9Sk4LbV73HyOMo" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.13368982" />
+    <property name="project.structure.side.proportion" value="0.22847682" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="Application.pro4">
+    <configuration name="pro4" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <module name="project-4" />
+      <option name="WORKING_DIRECTORY" value="/usr/local/apache-tomcat-10.0.20/webapps/Project4/WEB-INF/classes" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed" type="JarApplication" nameIsGenerated="true">
+      <option name="WORKING_DIRECTORY" value="/usr/local/apache-tomcat-10.0.20/webapps/Project4/WEB-INF/classes" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.pro4" />
+      <item itemvalue="JAR Application.Unnamed" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2c8dc536-a0c6-4fcb-98b7-aec724542bd6" name="Changes" comment="" />
+      <created>1649132709901</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1649132709901</updated>
+      <workItem from="1649132712135" duration="542000" />
+      <workItem from="1649134330993" duration="5237000" />
+      <workItem from="1649165667307" duration="4499000" />
+      <workItem from="1649277543181" duration="2121000" />
+      <workItem from="1649280680520" duration="1397000" />
+      <workItem from="1649282096096" duration="1797000" />
+      <workItem from="1649773855743" duration="1462000" />
+      <workItem from="1650471262397" duration="3046000" />
+      <workItem from="1650477704888" duration="8534000" />
+      <workItem from="1650486776208" duration="6000" />
+      <workItem from="1650488534505" duration="20030000" />
+    </task>
+    <task id="LOCAL-00001" summary="Creating project 4 and clientHome html page">
+      <created>1649138629671</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1649138629671</updated>
+    </task>
+    <task id="LOCAL-00002" summary="First Commit">
+      <created>1649274963021</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1649274963021</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Updating stuff">
+      <created>1649282047025</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1649282047025</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Creating project 4 and clientHome html page" />
+    <MESSAGE value="First Commit" />
+    <MESSAGE value="Updating stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updating stuff" />
+  </component>
+</project>
