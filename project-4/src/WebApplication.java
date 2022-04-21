@@ -52,8 +52,8 @@ public class WebApplication extends HttpServlet {
                 "    <form>\n" +
                 "        <textarea class=\"form-control\" id=\"text-area\" rows =\"20\" cols=\"80\" name = \"textsql\" autofocus method=\"post\">"+ sql +"</textarea><br/>\n" +
                 "        <input name=\"execute\" class=\"execute-button\" type = \"submit\" value = \"Execute Command\" formaction=\"/Project4/webapp\" method = \"post\">\n" +
-                "        <input name=\"reset\" class=\"reset-button\" type = \"submit\" value = \"Reset Form\" formaction=\"rootHome.html\">\n" +
-                "        <input name=\"clear\" class=\"clear-button\" type = \"submit\" value = \"Clear Results\" formaction=\"rootHome.html\">\n" +
+                "        <input name=\"reset\" class=\"reset-button\" type = \"submit\" value = \"Reset Form\" formaction=\"rootHome.jsp\">\n" +
+                "        <input name=\"clear\" class=\"clear-button\" type = \"submit\" value = \"Clear Results\" formaction=\"rootHome.jsp\">\n" +
                 "    </form>\n" +
                 "</div><br/>\n" +
                 "<div class=\"results\">\n" +
@@ -86,7 +86,7 @@ public class WebApplication extends HttpServlet {
                 "        <textarea class=\"form-control\" id=\"text-area\" rows =\"20\" cols=\"80\" name = \"textsql\" autofocus method=\"post\">"+ sql +"</textarea><br/>\n" +
                 "        <input name=\"execute\" class=\"execute-button\" type = \"submit\" value = \"Execute Command\" formaction=\"/Project4/webapp\" method = \"post\">\n" +
                 "        <input name=\"reset\" class=\"reset-button\" type = \"submit\" value = \"Reset Form\" formaction=\"/Project4/webapp\">\n"  +
-                "        <input name=\"clear\" class=\"clear-button\" type = \"submit\" value = \"Clear Results\" formaction=\"rootHome.html\">\n" +
+                "        <input name=\"clear\" class=\"clear-button\" type = \"submit\" value = \"Clear Results\" formaction=\"rootHome.jsp\">\n" +
                 "    </form>\n" +
                 "</div><br/>\n" +
                 "<div class=\"results\">\n" +
@@ -134,7 +134,7 @@ public class WebApplication extends HttpServlet {
                 "        <textarea class=\"form-control\" id=\"text-area\" rows =\"20\" cols=\"80\" name = \"textsql\" autofocus method=\"post\"></textarea><br/>\n" +
                 "        <input name=\"execute\" class=\"execute-button\" type = \"submit\" value = \"Execute Command\" formaction=\"/Project4/webapp\" method = \"post\">\n" +
                 "        <input name=\"reset\" class=\"reset-button\" type = \"submit\" value = \"Reset Form\" formaction=\"/Project4/webapp\">\n" +
-                "        <input name=\"clear\" class=\"clear-button\" type = \"submit\" value = \"Clear Results\" formaction=\"rootHome.html\">\n" +
+                "        <input name=\"clear\" class=\"clear-button\" type = \"submit\" value = \"Clear Results\" formaction=\"rootHome.jsp\">\n" +
                 "    </form>\n" +
                 "</div><br/>\n" +
                 "<div class=\"results\">\n" +
