@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c8dc536-a0c6-4fcb-98b7-aec724542bd6" name="Changes" comment="Updating stuff">
-      <change beforePath="$PROJECT_DIR$/clientHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/clientHome.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loginPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/loginPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-4/WebApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-4/WebApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-4/clientHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-4/clientHome.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-4/rootHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-4/rootHome.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-4/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-4/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rootHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/rootHome.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ThreeTier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rootHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/rootHome.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WebApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +107,8 @@
       <workItem from="1650471262397" duration="3046000" />
       <workItem from="1650477704888" duration="8534000" />
       <workItem from="1650486776208" duration="6000" />
-      <workItem from="1650488534505" duration="20030000" />
+      <workItem from="1650488534505" duration="23748000" />
+      <workItem from="1650556017636" duration="2093000" />
     </task>
     <task id="LOCAL-00001" summary="Creating project 4 and clientHome html page">
       <created>1649138629671</created>
@@ -149,7 +142,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="BEK_SORT_TYPE" value="1" />
+            </State>
           </value>
         </entry>
       </map>
