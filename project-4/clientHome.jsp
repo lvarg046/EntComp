@@ -1,4 +1,9 @@
 <%@page contentType="text/html;charset=utf-8" language="java" %>
+
+    <%
+        String USERNAME = "client";
+        String PASSWORD = "client";
+    %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,9 +27,9 @@
 <div class="text-box">
     <form>
         <textarea class="form-control" id="text-area" rows ="15" cols="60" name = "textsql" autofocus method="post"></textarea><br/>
-        <input name="execute" class="execute-button" type = "submit" value = "Execute Command" formaction="/Project4/webapp" method = "post">
-        <input name="reset" class="reset-button" type = "submit" value = "Reset Form" formaction="/Project4/webapp">
-        <input name="clear" class="clear-button" type = "submit" value = "Clear Results" formaction="rootHome.jsp">
+        <input name="execute" class="execute-button" type = "submit" value = "Execute Command" formaction="/Project4/client" method = "get">
+        <input name="reset" class="reset-button" type = "submit" value = "Reset Form" formaction="/Project4/client">
+        <input name="clear" class="clear-button" type = "submit" value = "Clear Results" formaction="clientHome.jsp">
     </form>
 </div><br/>
 <div class="results">
@@ -43,3 +48,5 @@
 
 </body>
 </html>
+
+<%--Comment--%>

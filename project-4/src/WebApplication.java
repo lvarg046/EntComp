@@ -1,3 +1,10 @@
+/*
+* Name: Luis Vargaster
+* Course: CNT4714 - Spring 2022 - Project Four
+* Assignment Title: A Three-Tier Distributed Web-Based Application
+* Date: April 24, 2022
+*/
+
 import java.io.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -51,7 +58,7 @@ public class WebApplication extends HttpServlet {
         out.println("<div class=\"text-box\">\n" +
                 "    <form>\n" +
                 "        <textarea class=\"form-control\" id=\"text-area\" rows =\"15\" cols=\"60\" name = \"textsql\" autofocus method=\"post\">"+ sql +"</textarea><br/>\n" +
-                "        <input name=\"execute\" class=\"execute-button\" type = \"submit\" value = \"Execute Command\" formaction=\"/Project4/webapp\" method = \"post\">\n" +
+                "        <input name=\"execute\" class=\"execute-button\" type = \"submit\" value = \"Execute Command\" formaction=\"/Project4/webapp\" method = \"get\">\n" +
                 "        <input name=\"reset\" class=\"reset-button\" type = \"submit\" value = \"Reset Form\" formaction=\"rootHome.jsp\">\n" +
                 "        <input name=\"clear\" class=\"clear-button\" type = \"submit\" value = \"Clear Results\" formaction=\"rootHome.jsp\">\n" +
                 "    </form>\n" +
@@ -77,7 +84,7 @@ public class WebApplication extends HttpServlet {
                 "</header>\n" +
                 "<div class=\"middle-text\">\n" +
                 "    <h1>\n" +
-                "        <span class=\"middle-text-meta\">You are connected to the Project 4 Enterprise System database in a <span class=\"user-color\">root level</span> user.<br/>\n" +
+                "        <span class=\"middle-text-meta\">You are connected to the Project 4 Enterprise System database in a <span class=\"user-color\">client level</span> user.<br/>\n" +
                 "        Please enter any valid SQL query or update command in the box below. </span>\n" +
                 "    </h1>\n" +
                 "</div>");
@@ -175,6 +182,8 @@ public class WebApplication extends HttpServlet {
                         if( rowsAffected > 0 ){
                             out.println("<b>Business Logic detected! - Updating Supplier Status</b><br/>\n" +
                                     "            <b>Business Logic Updated - "+rowsAffected+" supplier status marks.</b>");
+                        } else {
+                            out.println("<b> Business Logic Not Triggered!</b><br/>");
                         }
                     }
                     out.println("</div>");
@@ -185,37 +194,7 @@ public class WebApplication extends HttpServlet {
                             "            <b>"+res+"row(s) affected.</b></br>");
                     out.println("</div>");
                 } else {
-                    resultsRS = statement.executeQuery(str);
-                    int votes;
-                    out.println("<div class= 'dbresults'>");
-                    out.println("<h1>Database Results: </h1>");
-                    out.println("<form><table class='dbRes'>");
-                    ResultSetMetaData rsmd = resultsRS.getMetaData();
-                    int colCount = rsmd.getColumnCount();
-                    out.println("<thead>");
-                    out.println("<tr>");
-
-                    for( int i = 0; i < colCount; i++) {
-                        out.println("<th>"+ rsmd.getColumnLabel(i+1) +"</th>");
-                    }
-                    out.println("</thead>");
-                    out.println("</tr>");
-                    out.println("<tbody>");
-                    while( resultsRS.next() ){
-                        rowCount++;
-                        out.println("<tr>");
-                        for( int i = 0; i < colCount; i++ ){
-                            out.println("<td>"+ resultsRS.getString(i+1)+"</td>");
-                        }
-                        out.println("</tr>");
-                    }
-                    out.println("</tbody></table></form></div></br></br></div>");
-                    out.println("<div class=\"dbresults\">\n" + "\n" + "</div>");
-                    out.println();
-                    out.println("</span>");
-                    out.println();
-                    out.println();
-                    resultsRS.close();
+                    sqlExecution(out, str, rowCount, statement);
                 }
 
                 out.println("</body></html>");
@@ -254,6 +233,8 @@ public class WebApplication extends HttpServlet {
                         if( rowsAffected > 0 ){
                             out.println("<b>Business Logic detected! - Updating Supplier Status</b><br/>\n" +
                                     "            <b>Business Logic Updated - "+rowsAffected+" supplier status marks.</b>");
+                        } else {
+                            out.println("<b> Business Logic Not Triggered!</b><br/>");
                         }
                     }
                     out.println("</div>");
@@ -264,36 +245,7 @@ public class WebApplication extends HttpServlet {
                             "            <b>"+res+"row(s) affected.</b></br>");
                     out.println("</div>");
                 } else {
-                    resultsRS = statement.executeQuery(str);
-                    out.println("<div class= 'dbresults'>");
-                    out.println("<h1>Database Results: </h1>");
-                    out.println("<form><table class='dbRes'>");
-                    ResultSetMetaData rsmd = resultsRS.getMetaData();
-                    int colCount = rsmd.getColumnCount();
-                    out.println("<thead>");
-                    out.println("<tr>");
-
-                    for( int i = 0; i < colCount; i++) {
-                        out.println("<th>"+ rsmd.getColumnLabel(i+1) +"</th>");
-                    }
-                    out.println("</thead>");
-                    out.println("</tr>");
-                    out.println("<tbody>");
-                    while( resultsRS.next() ){
-                        rowCount++;
-                        out.println("<tr>");
-                        for( int i = 0; i < colCount; i++ ){
-                            out.println("<td>"+ resultsRS.getString(i+1)+"</td>");
-                        }
-                        out.println("</tr>");
-                    }
-                    out.println("</tbody></table></form></div></br></br></div>");
-                    out.println("<div class=\"dbresults\">\n" + "\n" + "</div>");
-                    out.println();
-                    out.println("</span>");
-                    out.println();
-                    out.println();
-                    resultsRS.close();
+                    sqlExecution(out, str, rowCount, statement);
                 }
                 out.println("</body></html>");
                 out.close();
@@ -311,6 +263,39 @@ public class WebApplication extends HttpServlet {
         // send HTML5 page to client
     } //end doGet() method
 
+    private static void sqlExecution(PrintWriter out, String str, int rowCount, Statement statement) throws SQLException {
+        ResultSet resultsRS;
+        resultsRS = statement.executeQuery(str);
+        out.println("<div class= 'dbresults'>");
+        out.println("<h1>Database Results: </h1>");
+        out.println("<form><table class='dbRes'>");
+        ResultSetMetaData rsmd = resultsRS.getMetaData();
+        int colCount = rsmd.getColumnCount();
+        out.println("<thead>");
+        out.println("<tr>");
+
+        for( int i = 0; i < colCount; i++) {
+            out.println("<th>"+ rsmd.getColumnLabel(i+1) +"</th>");
+        }
+        out.println("</thead>");
+        out.println("</tr>");
+        out.println("<tbody>");
+        while( resultsRS.next() ){
+            rowCount++;
+            out.println("<tr>");
+            for( int i = 0; i < colCount; i++ ){
+                out.println("<td>"+ resultsRS.getString(i+1)+"</td>");
+            }
+            out.println("</tr>");
+        }
+        out.println("</tbody></table></form></div></br></br></div>");
+        out.println("<div class=\"dbresults\">\n" + "\n" + "</div>");
+        out.println();
+        out.println("</span>");
+        out.println();
+        out.println();
+        resultsRS.close();
+    }
     public void destroy(){
         try{
             statement.close();
@@ -320,4 +305,5 @@ public class WebApplication extends HttpServlet {
         }
     }
 
-} //end WelcomeServlet class
+} //end WebApplication Servlet class
+// Comment

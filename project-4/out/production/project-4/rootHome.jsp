@@ -14,8 +14,8 @@
 </header>
 <div class="middle-text">
     <h1>
-        <span class="middle-text-meta">You are connected to the Project 4 Enterprise System database in a <span class="user-color">root level</span> user.<br/>
-        Please enter any valid SQL query or update command in the box below.</span>s
+        <span class="middle-text-meta">You are connected to the Project 4 Enterprise System database in a <span class="user-color">client level</span> user.<br/>
+        Please enter any valid SQL query or update command in the box below.</span>
     </h1>
 </div>
 <!--as-->
@@ -24,7 +24,7 @@
         <textarea class="form-control" id="text-area" rows ="15" cols="60" name = "textsql" autofocus method="post"></textarea><br/>
         <input name="execute" class="execute-button" type = "submit" value = "Execute Command" formaction="/Project4/webapp" method = "post">
         <input name="reset" class="reset-button" type = "submit" value = "Reset Form" formaction="/Project4/webapp">
-        <input name="clear" class="clear-button" type = "submit" value = "Clear Results" formaction="rootHome.html">
+        <input name="clear" class="clear-button" type = "submit" value = "Clear Results" formaction="rootHome.jsp">
     </form>
 </div><br/>
 <div class="results">
